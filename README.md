@@ -1,5 +1,44 @@
 # Azure Blob Proxy サンプルアプリ 要件定義・設計（簡易版）
 
+## セットアップ手順
+
+
+1. 必要なパッケージをインストール
+	```sh
+	cd App
+	npm init -y
+	npm install express @azure/storage-blob dotenv
+	```
+
+2. 不要なパッケージが入っていないか確認・削除
+	```sh
+	npm ls router path-to-regexp
+	npm uninstall router path-to-regexp
+	```
+
+2. `.env` ファイルを作成（Appディレクトリ内）
+	```env
+	AZURE_STORAGE_CONNECTION_STRING=your-azure-connection-string
+	CONTAINER_NAME=sample-container
+	PORT=3000
+	```
+
+3. `.gitignore` に `.env` を追加（Appディレクトリ内）
+	```
+	.env
+	```
+
+4. アプリの起動
+	```sh
+	node app.js
+	```
+
+5. 動作確認
+	- ブラウザやAPIクライアントで `http://localhost:3000/proxy/ファイルパス` にアクセス
+	- 例: `http://localhost:3000/proxy/img/image.png`
+
+※ Azure Blob Storage の接続情報は Azure ポータルから取得してください。
+
 ## 目的
 Azure Blob Storage 上の静的コンテンツを AppServer 経由でプロキシ配信するサンプルアプリを作成する。
 
